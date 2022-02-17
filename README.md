@@ -117,3 +117,5 @@ layui.use(['layer', 'form'], function(){
 
 ## 相关
 [官网](http://www.layui.com/)、[更新日志](http://www.layui.com/doc/base/changelog.html)、[社区交流](http://fly.layui.com)
+
+## 由于官网已下架 文档暂时可以在[这里](https://www.bejson.com/doc/layui/)查看
