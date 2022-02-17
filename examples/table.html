@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>表格操作 - layui</title>
+
+    <link rel="stylesheet" href="../src/css/layui.css">
+
+    <style>
+        body {
+            padding: 20px;
+            background: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <table id="demo" lay-filter="demo"></table>
+    <script type="text/html" id="toolbarDemo">
+        <div class="layui-btn-container">
+            <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+            <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+            <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+        </div>
+    </script>
+    <script src="../src/layui.js" charset="utf-8"></script>
+    <script>
+        layui.use('table', function() {
+            var table = layui.table;
+            //直接赋值数据
+            table.render({
+                elem: '#demo',
+                toolbar: '#toolbarDemo',
+                cols: [
+                    [ //标题栏
+                        {
+                            type: 'checkbox',
+                        }, {
+                            field: 'id',
+                            title: 'ID',
+                            sort: true
+                        }, {
+                            field: 'username',
+                            title: '用户名',
+
+                        }, {
+                            field: 'email',
+                            title: '邮箱',
+
+                        }, {
+                            field: 'sign',
+                            title: '签名',
+
+                        }, {
+                            field: 'sex',
+                            title: '性别',
+
+                        }, {
+                            field: 'city',
+                            title: '城市',
+
+                        }, {
+                            field: 'experience',
+                            title: '积分',
+
+                            sort: true
+                        }
+                    ]
+                ],
+                data: [{
+                    "LAY_DISABLED": true,
+                    "id": "10001",
+                    "username": "杜甫",
+                    "email": "xianxin@layui.com",
+                    "sex": "男",
+                    "city": "浙江杭州",
+                    "sign": "人生恰似一场修行",
+                    "experience": "116",
+                    "ip": "192.168.0.8",
+                    "logins": "108",
+                    "joinTime": "2016-10-14"
+                }, {
+                    "id": "10002",
+                    "username": "李白",
+                    "email": "xianxin@layui.com",
+                    "sex": "男",
+                    "city": "浙江杭州",
+                    "sign": "人生恰似一场修行",
+                    "experience": "12",
+                    "ip": "192.168.0.8",
+                    "logins": "106",
+                    "joinTime": "2016-10-14",
+                    "LAY_CHECKED": true
+                }, {
+                    "id": "10003",
+                    "username": "王勃",
+                    "email": "xianxin@layui.com",
+                    "sex": "男",
+                    "city": "浙江杭州",
+                    "sign": "人生恰似一场修行",
+                    "experience": "65",
+                    "ip": "192.168.0.8",
+                    "logins": "106",
+                    "joinTime": "2016-10-14"
+                }, {
+                    "id": "10004",
+                    "username": "贤心",
+                    "email": "xianxin@layui.com",
+                    "sex": "男",
+                    "city": "浙江杭州",
+                    "sign": "人生恰似一场修行",
+                    "experience": "666",
+                    "ip": "192.168.0.8",
+                    "logins": "106",
+                    "joinTime": "2016-10-14"
+                }, {
+                    "id": "10005",
+                    "username": "贤心",
+                    "email": "xianxin@layui.com",
+                    "sex": "男",
+                    "city": "浙江杭州",
+                    "sign": "人生恰似一场修行",
+                    "experience": "86",
+                    "ip": "192.168.0.8",
+                    "logins": "106",
+                    "joinTime": "2016-10-14"
+                }, {
+                    "id": "10006",
+                    "username": "贤心",
+                    "email": "xianxin@layui.com",
+                    "sex": "男",
+                    "city": "浙江杭州",
+                    "sign": "人生恰似一场修行",
+                    "experience": "12",
+                    "ip": "192.168.0.8",
+                    "logins": "106",
+                    "joinTime": "2016-10-14"
+                }, {
+                    "id": "10007",
+                    "username": "贤心",
+                    "email": "xianxin@layui.com",
+                    "sex": "男",
+                    "city": "浙江杭州",
+                    "sign": "人生恰似一场修行",
+                    "experience": "16",
+                    "ip": "192.168.0.8",
+                    "logins": "106",
+                    "joinTime": "2016-10-14"
+                }, {
+                    "id": "10008",
+                    "username": "贤心",
+                    "email": "xianxin@layui.com",
+                    "sex": "男",
+                    "city": "浙江杭州",
+                    "sign": "人生恰似一场修行",
+                    "experience": "106",
+                    "ip": "192.168.0.8",
+                    "logins": "106",
+                    "joinTime": "2016-10-14"
+                }]
+
+                ,
+                skin: 'row' //表格风格
+                    ,
+                even: true
+                    //,size: 'lg' //尺寸
+
+                ,
+                page: true //是否显示分页
+                    ,
+                limits: [3, 5, 10],
+                limit: 3 //每页默认显示的数量
+                    //,loading: false //请求数据时，是否显示loading
+            });
+            table.on('toolbar(demo)', function(obj) {
+                var checkStatus = table.checkStatus(obj.config.id);
+                switch (obj.event) {
+                    case 'getCheckData':
+                        var data = checkStatus.data;
+                        layer.alert(JSON.stringify(data));
+                        break;
+                    case 'getCheckLength':
+                        var data = checkStatus.data;
+                        layer.msg('选中了：' + data.length + ' 个');
+                        break;
+                    case 'isAll':
+                        layer.msg(checkStatus.isAll ? '全选' : '未全选')
+                        break;
+                };
+            });
+
+        });
+    </script>
+</body>
+
+</html>
